@@ -3,11 +3,29 @@ import random
 
 
 def linear_search_steps(haystack, needle):
+    for i in range(len(haystack)):
+        if haystack[i] == needle:
+            return i
     return -1
 
 
 def binary_search_steps(haystack, needle):
-    return -1
+    steps = 1
+    end = len(haystack)
+    start = 0
+    mid = (end + start)//2
+    if needle in haystack:
+        while haystack[mid] != needle:
+            if haystack[mid]+1 > needle:
+                end = mid
+            if haystack[mid] - 1 < needle:
+                start = mid
+            mid = (end + start)//2
+            steps += 1
+        return steps
+    else:
+        return -1
+
 
 
 def get_average_steps(max_num, search_type, tries=100):
